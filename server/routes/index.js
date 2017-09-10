@@ -12,7 +12,21 @@ process.env.SECRET_KEY = 'mysecretkey';
 module.exports = (app) => {
   app.get('/api/v1', (req, res) => {
     res.status(200).json({
+      message: 'Welcome to More Recipe, This is version 1',
+      status: 'successful',
+    });
+  });
+
+  app.get('/api', (req, res) => {
+    res.status(200).json({
       message: 'Welcome to More Recipe',
+      status: 'successful',
+    });
+  });
+
+  app.get('/', (req, res) => {
+    res.status(200).json({
+      message: 'Hello',
       status: 'successful',
     });
   });
