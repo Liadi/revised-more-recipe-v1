@@ -23,15 +23,15 @@ app.get('*', (req, res) =>
     })
 });
 
-app.post('*', (req, res) => 
-{
-    res.status(404).json(
-    {
-        message: `Ooops! your request couldn't be processed you should 
-        return to the home page or log in`,
-        status: 'successful',
-    })
-});
+// app.post('*', (req, res) => 
+// {
+//     res.status(404).json(
+//     {
+//         message: `Ooops! your request couldn't be processed you should 
+//         return to the home page or log in`,
+//         status: 'successful',
+//     })
+// });
 
 app.delete('*', (req, res) => 
 {

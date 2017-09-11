@@ -6,18 +6,6 @@ const jwt = require('jsonwebtoken');
 const secret = 'secret';
 const Vote = require('../models').Vote;
 
-let multiplEntries = (field) => {
-  try{
-    //.trim();
-  }
-  catch (err){
-    res.status(400).json({
-      message: "Pls fill the field appropriately",
-      status: 'failed'
-    })
-    return -1;
-  }
-}
 
 module.exports = {
 
@@ -34,7 +22,11 @@ module.exports = {
       req.recipeName = ((req.body.recipeName && req.body.recipeName.trim()) || null)  || ((req.headers.recipeName && req.headers.recipeName.trim()) || null);
       req.recipeInstruction = ((req.body.recipeInstruction && req.body.recipeInstruction.trim()) || null) || ((req.headers.recipeInstruction && req.headers.recipeInstruction.trim()) || null);
       req.content = ((req.body.content && req.body.content.trim()) || null) || ((req.headers.content && req.headers.content.trim()) || null);
-      //req.imgUrl =
+      
+      req.recipeId = req.params.recipeId
+     // req.userId = parseInt(req.params.userId)
+      
+      
     }
     catch(err){
       res.status(400).json({
@@ -233,7 +225,7 @@ module.exports = {
         });
       }
       else{
-        tempName = recipe.name
+        let tempName = recipe.name
         recipe.destroy();
         res.status(202).send({
           message: tempName + ' recipe deleted',
@@ -254,6 +246,7 @@ module.exports = {
           message:`We presently don't have any recipe in our repository, You could add to it`,
           status: 'failed',
         });
+        return -1;
       }
       else{
         res.status(200).send({
@@ -261,6 +254,7 @@ module.exports = {
           status: 'successful',
           feed: recipes,
         });
+        return 0;
       }
     })
     .catch(error => {
@@ -278,6 +272,7 @@ module.exports = {
       {where:{id: req.params.recipeId}}
     )
     .then(recipe => {
+      req.recipe = recipe;
       if (recipe === null){
         return res.status(404).send({
           message: `That recipe doesn't exist`,
@@ -296,23 +291,24 @@ module.exports = {
       .then(recipe => 
         {res.status(202).send(
           {
-            message: recipe.name + " created",
+            message: req.recipe.name + " recipe created",
             status: 'successful',
             feed: recipe,
           });
       })
       .catch(error => {
-          const err = error.errors[0].message;
-          res.status(400).send({
-            message: err + ", Pls fill in the field appropriately",
-            status: 'failed'
-          });
+        const err = error.errors[0].message;
+        res.status(400).send({
+          message: err + ", Pls fill in the field appropriately",
+          status: 'failed'
+       });
       });
     })
     //server error
     //.catch(err => res.status(400).send('There is something wrong'));
   },
 
+  
   makeFavouriteRecipe(req, res){
     Recipe
     .findOne({
@@ -328,7 +324,7 @@ module.exports = {
       }
       Favourite
       .findOne({
-        where: {recipeId: req.params.recipeId, userId: req.userId}
+        where: {recipeId: req.recipeId, userId: req.userId}
       })
       .then(favourite =>{
         if (favourite){
@@ -341,7 +337,7 @@ module.exports = {
         Favourite
         .create({
           userId: req.userId,
-          recipeId: req.params.recipeId
+          recipeId: req.recipeId
         })
         .then(favourite => {
           res.status(200).send({

@@ -39,18 +39,18 @@ module.exports = (app) => {
   
   app.put('/api/v1/recipes/:recipeId', trimData, ensureFound, ensureSameUser, modifyRecipe);
 
-  app.delete('/api/v1/recipes/:recipeId', ensureFound, ensureSameUser, deleteRecipe);
+  app.delete('/api/v1/recipes/:recipeId',trimData, ensureFound, ensureSameUser, deleteRecipe);
 
-  app.get('/api/v1/recipes', ensureFound, ensureSameUser, getAllRecipes);
+  app.get('/api/v1/recipes',trimData, ensureFound, ensureSameUser, getAllRecipes);
 
   app.post('/api/v1/recipes/:recipeId/reviews', trimData, ensureFound, ensureSameUser, postRecipeReview);
 
-  app.post('/api/v1/users/:recipeId/favourite', trimData, ensureFound, ensureSameUser, makeFavouriteRecipe);
+  app.get('/api/v1/users/:recipeId/favourite',trimData, ensureFound, ensureSameUser, makeFavouriteRecipe);
 
-  app.get('/api/v1/users/:userId/recipes', ensureFound, ensureSameUser, userFavouriteRecipes);
+  app.get('/api/v1/users/:userId/recipes',trimData, ensureFound, ensureSameUser, userFavouriteRecipes);
   
-  app.post('/api/v1/recipes/:recipeId/vote', ensureFound, ensureSameUser, userVote);
+  app.post('/api/v1/recipes/:recipeId/vote',trimData, ensureFound, ensureSameUser, userVote);
 
-  app.get('/api/v1/recipes/upvotes', ensureFound, ensureSameUser, sortRecipeByVotes);
+  app.get('/api/v1/recipes/upvotes',trimData, ensureFound, ensureSameUser, sortRecipeByVotes);
 
 };

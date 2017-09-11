@@ -2,6 +2,7 @@ module.exports = (sequelize, DataTypes) => {
   const Review = sequelize.define('Review', {
     content: {
       type: DataTypes.STRING,
+      allowNull: false,
       validate: {
         is:{
           args: ['^\\W*(?:\\w+\\b\\W*){2,500}$','i'],
