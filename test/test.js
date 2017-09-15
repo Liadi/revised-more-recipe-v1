@@ -37,7 +37,7 @@ describe('More Recipe API', () => {
 			.end((err, res) => 
 			{
             	expect(res.status).to.equal(200); 
-				expect(res.body.message).to.equal('Welcome to More Recipe');
+				expect(res.body.message).to.equal('Welcome to More Recipe, This is version 1');
 				expect(res.body.status).to.equal('successful');
 				done();
 			});
