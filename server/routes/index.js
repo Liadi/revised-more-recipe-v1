@@ -1,13 +1,9 @@
-import {ensureSameUser, ensureFound, addRecipe, signUp, trimData, signIn} from '../controllers/user';
-import {modifyRecipe, deleteRecipe, getAllRecipes, postRecipeReview} from '../controllers/user';
-import {makeFavouriteRecipe, userFavouriteRecipes, sortRecipeByVotes, userVote} from '../controllers/user';
-import {recipes} from '../controllers';
-import jsonwebtoken from  'jsonwebtoken';
+import {signUp, signIn} from '../controllers/user';
+import {ensureSameUser, ensureFound, trimData} from '../controllers/middleware';
+import {addRecipe, modifyRecipe, deleteRecipe, getAllRecipes, postRecipeReview} from '../controllers/recipe';
+import {makeFavouriteRecipe, userFavouriteRecipes} from '../controllers/favourite';
+import {sortRecipeByVotes, userVote} from '../controllers/vote';
 import app from '../../app';
-
-
-const jwt = jsonwebtoken;
-process.env.SECRET_KEY = 'mysecretkey';
 
 module.exports = (app) => {
   app.get('/api/v1', (req, res) => {
@@ -49,8 +45,8 @@ module.exports = (app) => {
 
   app.get('/api/v1/users/:userId/recipes',trimData, ensureFound, ensureSameUser, userFavouriteRecipes);
   
-  app.post('/api/v1/recipes/:recipeId/vote',trimData, ensureFound, ensureSameUser, userVote);
+  app.get('/api/v1/recipes/:recipeId/vote',trimData, ensureFound, ensureSameUser, userVote);
 
-  app.get('/api/v1/recipes/upvotes',trimData, ensureFound, ensureSameUser, sortRecipeByVotes);
+  //app.get('/api/v1/recipes?sort=upvotes&order=descending',trimData, ensureFound, ensureSameUser, sortRecipeByVotes);
 
 };

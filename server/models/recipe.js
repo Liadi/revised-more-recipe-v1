@@ -20,8 +20,8 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         //length zero would be handled in the controller
         len :{
-          args: [1, 50],
-          msg: 'The ingredient list is too long, make it at most 50.\nYou can go to the help page for more'
+          args: [1,],
+          msg: 'The ingredient list is too long, make it at most --.\nYou can go to the help page for more'
         },
       }
     },
@@ -33,8 +33,8 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         //length zero would be handled in the controller
         len :{
-          args: [1, 50],
-          msg: 'The instruction list is too long, make it at most 50.\nYou can go to the help page for more'
+          args: [1,],
+          msg: 'The instruction list is too long, make it at most ----.\nYou can go to the help page for more'
         },
       }
     }, 

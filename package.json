@@ -2,7 +2,7 @@
   "name": "more-recipe",
   "version": "1.0.0",
   "description": "One place to share recipes and lot more",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "heroku-postbuild": "npm run migrate",
     "start": "babel-node bin/www",

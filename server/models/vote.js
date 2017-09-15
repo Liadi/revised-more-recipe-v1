@@ -5,6 +5,15 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
 
+    userId: 
+    {
+      type: DataTypes.INTEGER,
+    },
+    recipeId:
+    {
+      type: DataTypes.INTEGER,
+    }
+
   });
       Vote.associate = (models) => {
         // associations can be defined here
