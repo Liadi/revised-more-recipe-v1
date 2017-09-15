@@ -50,9 +50,9 @@ describe('More Recipe API', () => {
 describe('User sign up', () => {
 	beforeEach(() => {
 		data = {
-			firstName: 'Adewole',
-			lastName: 'Babalola',
-			email: 'ba@ba.com',
+			firstName: 'Babatunde',
+			lastName: 'Ajayi',
+			email: 'babs@yahoo.com',
 			password: 'abcdef',
 		};
 	});
