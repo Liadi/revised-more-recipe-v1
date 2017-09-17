@@ -1,6 +1,6 @@
 # More Recipe
 
-https://travis-ci.org/Liadi/revised-more-recipe-v1.svg?branch=master
+https://travis-ci.org/Liadi/revised-more-recipe-v1
 
 More Recipe, A network of people committed to sharing recipes. A large repository of recipes
 Explore recipes
