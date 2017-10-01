@@ -23,7 +23,7 @@ module.exports = {
         feed: user,
       }))
       .catch(error => {
-        console.log(error);
+        //console.log(error);
         const err = error.errors[0].message || error;
         res.status(400).json({
           message: err + ", pls fill the field appropriately",
