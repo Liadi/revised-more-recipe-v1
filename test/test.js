@@ -23,7 +23,7 @@ describe('Wrong page', () => {
 			{
             	expect(res.status).to.equal(404); 
 				expect(res.body.message).to.equal('Ooops! Something went wrong. try navigating from home page or log in');
-				expect(res.body.status).to.equal('failed');
+				expect(res.body.status).to.equal(false);
 				done();
 			});
 	});
@@ -38,7 +38,7 @@ describe('More Recipe API', () => {
 			{
             	expect(res.status).to.equal(200); 
 				expect(res.body.message).to.equal('Welcome to More Recipe, This is version 1');
-				expect(res.body.status).to.equal('successful');
+				expect(res.body.status).to.equal(true);
 				done();
 			});
 	});
@@ -64,7 +64,7 @@ describe('User sign up', () => {
 // 			{
 // 				//expect(res.status).to.equal(201); 
 // 				expect(res.body.message).to.equal('User created');
-// 				expect(res.body.status).to.equal('successful');
+// 				expect(res.body.status).to.equal(true);
 // 				done();
 // 			});
 // 	});
@@ -77,7 +77,7 @@ describe('User sign up', () => {
 // 			{
 // 				//expect(res.status).to.equal(201); 
 // 				expect(res.body.message).to.equal('email must be unique, pls fill the field appropriately');
-// 				expect(res.body.status).to.equal('failed');
+// 				expect(res.body.status).to.equal(false);
 // 				done();
 // 			});
 // 	});
@@ -91,7 +91,7 @@ describe('User sign up', () => {
 			.end((err, res) => 
 			{
 				expect(res.body.message).to.equal('email cannot be null, pls fill the field appropriately');
-				expect(res.body.status).to.equal('failed');
+				expect(res.body.status).to.equal(false);
 				done();
 			});
 	});
@@ -106,7 +106,7 @@ describe('User sign up', () => {
 			.end((err, res) => 
 			{
 				expect(res.body.message).to.equal('firstName cannot be null, pls fill the field appropriately');
-				expect(res.body.status).to.equal('failed');
+				expect(res.body.status).to.equal(false);
 				done();
 			});
 	});
@@ -123,7 +123,7 @@ describe('User sign up', () => {
 				//console.log(err + ">>>" + res.body);
             	//expect(res.status).to.equal(201); 
 				expect(res.body.message).to.equal('lastName cannot be null, pls fill the field appropriately');
-				expect(res.body.status).to.equal('failed');
+				expect(res.body.status).to.equal(false);
 				done();
 			});
 	});
@@ -139,7 +139,7 @@ describe('User sign up', () => {
 				//console.log(err + ">>>" + res.body);
             	//expect(res.status).to.equal(201); 
 				expect(res.body.message).to.equal('password cannot be null, pls fill the field appropriately');
-				expect(res.body.status).to.equal('failed');
+				expect(res.body.status).to.equal(false);
 				done();
 			});
 	});
@@ -163,7 +163,7 @@ describe('User sign in', () => {
 	// 		{
 	// 			//expect(res.status).to.equal(201); 
 	// 			expect(res.body.message).to.equal('Successfully signed in');
-	// 			expect(res.body.status).to.equal('successful');
+	// 			expect(res.body.status).to.equal(true);
 	// 			done();
 	// 		});
 	// });
@@ -179,7 +179,7 @@ describe('User sign in', () => {
 				//console.log(err + ">>>" + res.body);
             	//expect(res.status).to.equal(201); 
 				expect(res.body.message).to.equal('Both email and password are required, fill them accordingly');
-				expect(res.body.status).to.equal('failed');
+				expect(res.body.status).to.equal(false);
 				done();
 			});
 	});
@@ -195,7 +195,7 @@ describe('User sign in', () => {
 				//console.log(err + ">>>" + res.body);
             	//expect(res.status).to.equal(201); 
 				expect(res.body.message).to.equal('Both email and password are required, fill them accordingly');
-				expect(res.body.status).to.equal('failed');
+				expect(res.body.status).to.equal(false);
 				done();
 			});
 	});
@@ -211,7 +211,7 @@ describe('User sign in', () => {
 	// 			//console.log(err + ">>>" + res.body);
     //         	//expect(res.status).to.equal(201); 
 	// 			expect(res.body.message).to.equal('Both email and password are required, fill them accordingly');
-	// 			expect(res.body.status).to.equal('failed');
+	// 			expect(res.body.status).to.equal(false);
 	// 			done();
 	// 		});
 	// });
