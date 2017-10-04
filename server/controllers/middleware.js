@@ -27,7 +27,7 @@ module.exports = {
         else{
           res.status(400).json({
             message: `faulty header parmeter, vote parameter is either "0" or "1"`,
-            status: 'failed'
+            status: false
           })
           return -1
         }
@@ -40,7 +40,7 @@ module.exports = {
     catch(err){
       res.status(400).json({
         message: "Pls fill the fields appropriately, You'd probably sent multiple entries for a field",
-        status: 'failed'
+        status: false
       })
       return -1
     } 
@@ -52,7 +52,7 @@ module.exports = {
     if (!req.token){
       res.status(401).send({
         message: `You only have access, if you're logged in`,
-        status: 'failed',
+        status: false,
       })
     }
     next();
@@ -65,7 +65,7 @@ module.exports = {
     } catch (err) {
       res.status(401).send({
         message: 'Pls login properly',
-        status: 'failed',
+        status: false,
       });
     }
     console.log(verifiedJWT);
@@ -73,7 +73,7 @@ module.exports = {
     if (!verifiedJWT.userId){
       res.status(400).send({
         message: 'Pls Login into your account or sign up',
-        satus: 'failed',
+        satus: false,
       });
       return -1;
     }
