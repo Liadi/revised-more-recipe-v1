@@ -6,7 +6,7 @@
   "scripts": {
     "heroku-postbuild": "npm run migrate",
     "start": "babel-node bin/www",
-    "startdev": "nodemon --exec babel-node bin/www",
+    "start:dev": "nodemon --exec babel-node bin/www",
     "test:local": "cross-env NODE_ENV=test_local&& npm run migrate:undo&& npm run migrate&& nyc mocha server/test/test.js --compilers js:babel-core/register",
     "test:db": "set NODE_ENV=test && sequelize db:migrate:undo:all&&sequelize db:migrate && cross-env NODE_ENV=test nyc mocha server/test/test.js", 
     "test": "mocha --compilers js:babel-core/register test/test.js",

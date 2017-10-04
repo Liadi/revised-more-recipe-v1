@@ -8,8 +8,8 @@ module.exports = {
         .then(recipe => {
           if (recipe === null){
             res.status(404).send({
-             message: "The recipe you're trying to vote doesn't exist",
-             status: "failed"
+             message: `The recipe you're trying to vote doesn't exist`,
+             status: false
             });
             return -1;
           }
@@ -29,17 +29,17 @@ module.exports = {
             if (vote.state === req.state){
               //making same vote which should result to a cancellation of that vote
               if (vote){
-                req.recipe.update({upVote: req.recipe.getDataValue("upVote") - 1,},);
+                req.recipe.update({upVote: req.recipe.getDataValue(`upVote`) - 1,},);
                 res.status(200).send({
-                  message: "Upvote undone",
-                  status: "successful"
+                  message: `Upvote undone`,
+                  status: true
                 });
               }
               else{
-                req.recipe.update({downVote: req.recipe.getDataValue("downVote") - 1,},);
+                req.recipe.update({downVote: req.recipe.getDataValue(`downVote`) - 1,},);
                 res.status(200).send({
-                  message: "Downvote undone",
-                  status: "failed"
+                  message: `Downvote undone`,
+                  status: false
               });
               }
               vote.destroy();
@@ -50,17 +50,17 @@ module.exports = {
               vote.state = req.state
               if (req.state){
                 //reduce recipe downvote and increse upvote
-                req.recipe.update({upVote: req.recipe.getDataValue("upVote") + 1,},);
-                req.recipe.update({downVote: req.recipe.getDataValue("downVote") - 1,},);          
+                req.recipe.update({upVote: req.recipe.getDataValue(`upVote`) + 1,},);
+                req.recipe.update({downVote: req.recipe.getDataValue(`downVote`) - 1,},);          
             }
               else{
                 //reduce recipe upvote and increse downvote
-                req.recipe.update({upVote: req.recipe.getDataValue("upVote") - 1,},);
-                req.recipe.update({downVote: req.recipe.getDataValue("downVote") + 1,},);
+                req.recipe.update({upVote: req.recipe.getDataValue(`upVote`) - 1,},);
+                req.recipe.update({downVote: req.recipe.getDataValue(`downVote`) + 1,},);
               }
               res.status(200).send({
-                message: "Vote taken",
-                status: "successful",
+                message: `Vote taken`,
+                status: true,
               });
     
             }
@@ -75,15 +75,15 @@ module.exports = {
             })
             .then(vote => {
               if (req.state){
-                req.recipe.update({upVote: req.recipe.getDataValue("upVote") + 1,},);
+                req.recipe.update({upVote: req.recipe.getDataValue(`upVote`) + 1,},);
               }
               else{
-                req.recipe.update({downVote: req.recipe.getDataValue("downVote") + 1,},);
+                req.recipe.update({downVote: req.recipe.getDataValue(`downVote`) + 1,},);
               }
     
               res.status(200).send({
-                message: "Vote is created",
-                status: "successful",
+                message: `Vote is created`,
+                status: true,
                 feed: vote
               })
             })

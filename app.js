@@ -18,7 +18,7 @@ app.get('*', (req, res) =>
     res.status(404).json(
     {
       message: 'Ooops! Something went wrong. try navigating from home page or log in',
-      status: 'failed',
+      status: false,
 
     })
 });
@@ -29,7 +29,7 @@ app.post('*', (req, res) =>
     {
         message: `Ooops! your request couldn't be processed you should 
         return to the home page or log in`,
-        status: 'successful',
+        status: false,
     })
 });
 
@@ -39,7 +39,7 @@ app.delete('*', (req, res) =>
     {
         message: `Ooops! your request couldn't be processed you should 
         return to the home page or log in`,
-        status: 'successful',
+        status: false,
     })
 });
 
@@ -49,9 +49,11 @@ app.put('*', (req, res) =>
     {
         message: `Ooops! your request couldn't be processed you should 
         return to the home page or log in`,
-        status: 'successful',
+        status: false,
     })
 });
+
+
 
 // Setup a default catch-all route that sends back a welcome message in JSON format.
 // app.get('*', (req, res) => res.status(200).send({

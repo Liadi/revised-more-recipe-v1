@@ -14,15 +14,15 @@ module.exports = {
     .then(recipe => {
       res.status(201).send({
         message: 'Recipe added',
-        status: 'successful',
+        status: true,
         feed: recipe
       })
     })
     .catch(error => {
       const err = error.errors[0].message;
       res.status(406).send({
-        message: err + " Pls fill in the field appropriately",
-        status: "failed"
+        message: err + ` Pls fill in the field appropriately`,
+        status: false
       })
     });
   },
@@ -51,7 +51,7 @@ module.exports = {
       .then((recipe) => {
         res.status(200).send({
           message: recipe.name + ' recipe updated',
-          status: 'successful',
+          status: true,
           feed: recipe,
         })
         return -1;
@@ -59,8 +59,8 @@ module.exports = {
       .catch(error => {
         const err = error.errors[0].message;
         res.status(400).send({
-          message: err + " Pls fill in the field appropriately",
-          status: 'failed'
+          message: err + ` Pls fill in the field appropriately`,
+          status: false
         });
         return -1;
       });
@@ -71,7 +71,7 @@ module.exports = {
         //console.log('You\'re trying to modify a recipe that doesn\'t exist')
         res.status(404).send({
           message: `You don't have any such recipe`,
-          status: 'failed'
+          status: false
         });
       });
 
@@ -88,7 +88,7 @@ module.exports = {
       if (!recipe){
         res.status(404).send({
           message: `You don't have any such recipe`,
-          status: 'failed'
+          status: false
         });
       }
       else{
@@ -96,7 +96,7 @@ module.exports = {
         recipe.destroy();
         res.status(202).send({
           message: tempName + ' recipe deleted',
-          status: 'successful',
+          status: true,
         });
       }
     })
@@ -121,12 +121,12 @@ module.exports = {
           if (recipes === null){
             res.status(200).send({
                 message: 'No recipe',
-                status: 'success',
+                status: true,
             });
           }
           res.status(200).send({
-            message: 'Recipes soted by upvotes',
-            status: 'success',
+            message: 'all recipes soted by upvotes',
+            status: true,
             feed: recipes,
           });
         })
@@ -139,14 +139,14 @@ module.exports = {
       if (recipes.length === 0){
         res.status(404).send({
           message:`We presently don't have any recipe in our repository, You could add to it`,
-          status: 'failed',
+          status: false,
         });
         return -1;
       }
       else{
         res.status(200).send({
           message: 'All recipes found',
-          status: 'successful',
+          status: true,
           feed: recipes,
         });
         return 0;
@@ -155,8 +155,8 @@ module.exports = {
     .catch(error => {
       const err = error.errors[0].message;
       res.status(400).send({
-        message: err + ", Pls fill in the field appropriately",
-        status: 'failed'
+        message: err + `, Pls fill in the field appropriately`,
+        status: false
       });
     });
   },
@@ -172,7 +172,7 @@ module.exports = {
       if (recipe === null){
         return res.status(404).send({
           message: `That recipe doesn't exist`,
-          status: 'failed'
+          status: false
         });
         return -1;
       }
@@ -187,16 +187,16 @@ module.exports = {
       .then(recipe => 
         {res.status(202).send(
           {
-            message: req.recipe.name + " recipe created",
-            status: 'successful',
+            message: req.recipe.name + ' recipe created',
+            status: true,
             feed: recipe,
           });
       })
       .catch(error => {
         const err = error.errors[0].message;
         res.status(400).send({
-          message: err + ", Pls fill in the field appropriately",
-          status: 'failed'
+          message: err + ', Pls fill in the field appropriately',
+          status: false
        });
       });
     })

@@ -19,7 +19,7 @@ module.exports = {
       })
       .then(user => res.status(201).json({
         message: 'User created',
-        status: 'successful',
+        status: true,
         feed: user,
       }))
       .catch(error => {
@@ -27,7 +27,7 @@ module.exports = {
         const err = error.errors[0].message || error;
         res.status(400).json({
           message: err + ", pls fill the field appropriately",
-          status: 'failed'
+          status: false
         })
       });
   },
@@ -36,7 +36,7 @@ module.exports = {
     if (req.email === null || req.password === null){
       res.status(400).send({
         message:'Both email and password are required, fill them accordingly',
-        status: 'failed',
+        status: false,
       });
       return -1
     }  
@@ -59,13 +59,13 @@ module.exports = {
           },
           token: token,
           message: "Successfully signed in",
-          status: "successful",
+          status: true,
         });
         return 0
       }
       res.status(400).send({
       message: "Authentication failed: Wrong email or password",
-      status: "failed",
+      status: false,
       });
       return -1
     })
@@ -73,7 +73,7 @@ module.exports = {
       const err = error.errors[0].message;
       res.status(400).send({
         message: err + " Pls fill in the field appropritely",
-        status: "failed"
+        status: false
       })
       return -1
     });
